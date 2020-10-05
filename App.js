@@ -1,35 +1,17 @@
 import * as React from 'react';
 import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { createStackNavigator, TransitionPresets, CardStyleInterpolators } from "@react-navigation/stack";
 
 import HomeScreen from './components/homeScreen';
 import SettingsScreen from './components/settingsScreen';
 import FeedScreen from './components/feesScreen';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
 
-// function HomeScreen(props) {
-//   return (
-//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-//       <Text>Home!</Text>
-//     </View>
-//   );
-// }
 
-// function SettingsScreen(props) {
-//   return (
-//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-//       <Text>Settings!</Text>
-//     </View>
-//   );
-// }
-// const FeedScreen = props => (
-//   <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-//     <Text>FeedScreen</Text>
-//   </View>
-// );
 
 
 function getHeaderTitle(route) {
@@ -49,11 +31,13 @@ function shouldHeaderBeShown(route) {
   const routeName = route.state ? route.state.routes[route.state.index].name : "Home";
   switch (routeName) {
     case "Home":
-      return true;
+      return false;
   }
 }
 const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
+// const Tab = createBottomTabNavigator();
+const Tab = createMaterialBottomTabNavigator();
+
 
 const HomeTabNavigator = ({ navigation, route }) => {
   return (
@@ -68,7 +52,7 @@ const HomeTabNavigator = ({ navigation, route }) => {
           } else if (route.name == "Settings") {
             iconName = "ios-settings";
           }
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return <Ionicons name={iconName} size={26} color={color} />;
         }
       })}
     >
