@@ -20,8 +20,8 @@ function getHeaderTitle(route) {
   switch (routeName) {
     case "Home":
       return "Home";
-    case "Feed":
-      return "Feed";
+    case "Chats":
+      return "Chats";
     case "Settings":
       return "Settings";
   }
@@ -47,7 +47,7 @@ const HomeTabNavigator = ({ navigation, route }) => {
           let iconName;
           if (route.name == "Home") {
             iconName = "ios-home";
-          } else if (route.name == "Feed") {
+          } else if (route.name == "Chats") {
             iconName = "logo-rss";
           } else if (route.name == "Settings") {
             iconName = "ios-settings";
@@ -57,7 +57,7 @@ const HomeTabNavigator = ({ navigation, route }) => {
       })}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Feed" component={FeedScreen} />
+      <Tab.Screen name="Chats" component={FeedScreen} />
       <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
   );
