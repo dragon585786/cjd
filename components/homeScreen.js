@@ -2,6 +2,8 @@ import React, {useRef, useState, useEffect} from 'react';
 import { Text, View, Image, TouchableOpacity, ScrollView, Dimensions, StatusBar, ImageBackground, TextInput, FlatList, StyleSheet } from 'react-native';
 import Carousel from 'react-native-anchor-carousel';
 import {FontAwesome5, Feather, MaterialIcons} from '@expo/vector-icons';
+import Search from './search/search';
+
 export default function HomeScreen (props){
   const [background,setBackground] = useState({
    uri:'https://i.pinimg.com/originals/e2/17/4a/e2174ab4d1f9c72de64bdffa283a1073.jpg',
@@ -10,7 +12,7 @@ export default function HomeScreen (props){
    desc:'$2.798 billion. Avengers: Endgame is a 2019 American superhero film based on the Marvel Comics superhero team the Avengers, produced by Marvel Studios and distributed by Walt Disney Studios Motion Pictures. It is the direct sequel to Avengers: Infinity War (2018) and the 22nd film in the Marvel Cinematic Universe (MCU) ...'
 
   });
-  const [gallery,setgallery] = useState([
+  const [gallery,setGallery] = useState([
     {
     image:'https://i.pinimg.com/originals/e2/17/4a/e2174ab4d1f9c72de64bdffa283a1073.jpg',
     title:'Avenger: End Game',
@@ -79,6 +81,7 @@ key:6},
   }
     return (
        <ScrollView style={{ backgroundColor:'black'}}>
+       <StatusBar backgroundColor="#31a3eb" />
          <View style={styles.carouselContentContainer}>
               <View style={{...StyleSheet.absoluteFill, backgroundColor:'#000'}}>
                   <ImageBackground
@@ -86,15 +89,15 @@ key:6},
                   style={styles.ImageBg}
                   blurRadius={10}                  
                   >
-                  
-                  <View style={styles.searchBoxContainer}>
+                  <Search />
+                  {/* <View style={styles.searchBoxContainer}>
                     <TextInput 
                       placeholder='Search Movies'
                       placeholderTextColor='#666'
                       style={styles.SearchBox}
                     />
                     <Feather name='search' size={22} color='#666' style={styles.searchBoxIcon} />
-                  </View>
+                  </View> */}
                   <Text style={{ color:'white', fontSize:24, fontWeight:'bold', marginLeft:10, marginVertical:10}}>
                     Top Picks This Week
                   </Text>
@@ -153,6 +156,25 @@ key:6},
                                 <TouchableOpacity style={{marginRight:20}}>
                                     <Image source={{uri:item.image}} style={{height:300, width:200}} />
                                     <View style={{position:'absolute', height:5, width:'100%', backgroundColor:'#02ad94', opacity:0.8}}>
+
+                                    </View>
+                                    <FontAwesome5 name="play" size={38} color="#fff" style={{position:'absolute', top:'45%',left:'45%',opacity:0.9}} />
+                                </TouchableOpacity>
+                              )
+                            }}
+                          />
+                           <View style={{flexDirection:'row', justifyContent:'space-between',alignItems:'center',marginBottom:24,marginTop:24}}>
+                          <Text style={{color:'white', fontSize:24, fontWeight:'bold'}}>Courses Available</Text>
+                          {/* <Text style={{color:'white', fontSize:14, fontWeight:'normal'}}>View All</Text> */}
+                          </View>
+                          <FlatList style={{marginBottom:30}} 
+                            data={list}
+                            horizontal={false}
+                            renderItem={({item})=>{
+                              return(
+                                <TouchableOpacity style={{marginHorizontal:10,marginBottom:30,}}>
+                                    <Image source={{uri:item.image}} style={{height:200, width:312,borderRadius:10}} />
+                                    <View style={{position:'absolute',borderRadius:10, borderColor:'#02ad94',paddingHorizontal:151, paddingVertical:95, borderWidth:5, opacity:0.8}}>
 
                                     </View>
                                     <FontAwesome5 name="play" size={38} color="#fff" style={{position:'absolute', top:'45%',left:'45%',opacity:0.9}} />

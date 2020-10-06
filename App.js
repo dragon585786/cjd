@@ -10,6 +10,7 @@ import SettingsScreen from './components/settingsScreen';
 import FeedScreen from './components/feesScreen';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
+import Search from './components/search/search';
 
 
 
@@ -24,6 +25,8 @@ function getHeaderTitle(route) {
       return "Chats";
     case "Settings":
       return "Settings";
+      case "Search":
+        return "Search";
   }
 }
 
@@ -52,13 +55,48 @@ const HomeTabNavigator = ({ navigation, route }) => {
           } else if (route.name == "Settings") {
             iconName = "ios-settings";
           }
+          else if (route.name == "Search") {
+            iconName = "ios-settings";
+          }
           return <Ionicons name={iconName} size={26} color={color} />;
         }
       })}
     >
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Chats" component={FeedScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen name="Home" component={HomeScreen} 
+       options={{
+          tabBarLabel: 'Home',
+          tabBarColor: '#1f65ff',
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="ios-home" color={color} size={26} />
+          ),
+        }} />
+      <Tab.Screen name="Chats" component={FeedScreen}
+       options={{
+          tabBarLabel: 'Chats',
+          tabBarColor: '#009387',
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="logo-rss" color={color} size={26} />
+          ),
+        }}
+         />
+      <Tab.Screen name="Settings" component={SettingsScreen}
+       options={{
+          tabBarLabel: 'Settings',
+          tabBarColor: '#694fad',
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="ios-settings" color={color} size={26} />
+          ),
+        }}
+       />
+        <Tab.Screen name="Search" component={Search}
+       options={{
+          tabBarLabel: 'Search',
+          tabBarColor: '#d02860',
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="ios-person" color={color} size={26} />
+          ),
+        }}
+       />
     </Tab.Navigator>
   );
 };
