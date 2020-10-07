@@ -11,6 +11,11 @@ import FeedScreen from './components/feesScreen';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
 import Search from './components/search/search';
+import PlayVideo from './components/home/playVideo';
+import ViewAll from './components/home/viewAll';
+// import ViewAll from './components/home/viewAll';
+
+
 
 
 
@@ -38,9 +43,39 @@ function shouldHeaderBeShown(route) {
   }
 }
 const Stack = createStackNavigator();
+const HomeStack = createStackNavigator();
+
 // const Tab = createBottomTabNavigator();
 const Tab = createMaterialBottomTabNavigator();
-
+const HomeStackNavigation = ({ navigation, route }) =>{
+  return(
+    <HomeStack.Navigator
+        // screenOptions={{
+        //   gestureEnabled: true,
+        //   gestureDirection: "horizontal",
+        //   cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        // //   transitionSpec: {
+        // //     open: config,
+        // //     close: closeConfig
+        // //   }
+        // }}
+        // headerMode="float"
+        // animation="fade"
+      >
+        <HomeStack.Screen
+          options={({ route }) => ({
+            title: getHeaderTitle(route),
+            headerShown: shouldHeaderBeShown(route)
+          })}
+          name="Home"
+          component={HomeScreen}
+        />
+        <HomeStack.Screen name="PlayVideo" component={PlayVideo} />
+        <HomeStack.Screen name="ViewAll" component={ViewAll} />
+        {/* <HomeStack.Screen name="Settings" component={SettingsScreen} /> */}
+      </HomeStack.Navigator>
+  )
+}
 
 const HomeTabNavigator = ({ navigation, route }) => {
   return (
@@ -56,13 +91,13 @@ const HomeTabNavigator = ({ navigation, route }) => {
             iconName = "ios-settings";
           }
           else if (route.name == "Search") {
-            iconName = "ios-settings";
+            iconName = "ios-search";
           }
           return <Ionicons name={iconName} size={26} color={color} />;
         }
       })}
     >
-      <Tab.Screen name="Home" component={HomeScreen} 
+      <Tab.Screen name="Home" component={HomeStackNavigation} 
        options={{
           tabBarLabel: 'Home',
           tabBarColor: '#1f65ff',
@@ -79,6 +114,15 @@ const HomeTabNavigator = ({ navigation, route }) => {
           ),
         }}
          />
+           <Tab.Screen name="Search" component={Search}
+       options={{
+          tabBarLabel: 'Search',
+          tabBarColor: '#d02860',
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="ios-search" color={color} size={26} />
+          ),
+        }}
+       />
       <Tab.Screen name="Settings" component={SettingsScreen}
        options={{
           tabBarLabel: 'Settings',
@@ -88,15 +132,7 @@ const HomeTabNavigator = ({ navigation, route }) => {
           ),
         }}
        />
-        <Tab.Screen name="Search" component={Search}
-       options={{
-          tabBarLabel: 'Search',
-          tabBarColor: '#d02860',
-          tabBarIcon: ({ color }) => (
-            <Ionicons name="ios-person" color={color} size={26} />
-          ),
-        }}
-       />
+      
     </Tab.Navigator>
   );
 };
@@ -144,7 +180,7 @@ export default function App() {
           name="Home"
           component={HomeTabNavigator}
         />
-        <Stack.Screen name="Settings" component={SettingsScreen} />
+        {/* <Stack.Screen name="Settings" component={SettingsScreen} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
