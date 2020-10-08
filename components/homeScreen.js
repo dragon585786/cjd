@@ -73,7 +73,7 @@ export default function HomeScreen({ navigation, route }) {
   }
   return (
     <ScrollView style={{ backgroundColor: 'black' }}>
-      <StatusBar backgroundColor="#31a3eb" />
+      <StatusBar backgroundColor="#0ba8b0" />
       <View style={styles.carouselContentContainer}>
         <View style={{ ...StyleSheet.absoluteFill, backgroundColor: '#000' }}>
           <ImageBackground

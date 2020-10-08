@@ -17,7 +17,10 @@ import ContinueVideo from './components/home/continue';
 import MyList from './components/home/myList';
 import CourseAvailable from './components/home/course';
 
-
+// import RootStackScreen from './Login/RootStackScreen';
+import SplashScreen from './Login/SplashScreen';
+import SignInScreen from './Login/SignInScreen';
+import SignUpScreen from './Login/SignUpScreen';
 
 
 
@@ -28,8 +31,8 @@ function getHeaderTitle(route) {
   const routeName = route.state ? route.state.routes[route.state.index].name : "Home";
 
   switch (routeName) {
-    case "Home":
-      return "Home";
+    // case "Home":
+    //   return "Homes";
     case "Chats":
       return "Chats";
     case "Settings":
@@ -40,42 +43,78 @@ function getHeaderTitle(route) {
 }
 
 function shouldHeaderBeShown(route) {
-  const routeName = route.state ? route.state.routes[route.state.index].name : "Home";
+  const routeName = route.state ? route.state.routes[route.state.index].name : "HomeTabNavigator";
   switch (routeName) {
-    case "Home":
+    case "HomeTabNavigator":
       return false;
   }
 }
 const Stack = createStackNavigator();
 const HomeStack = createStackNavigator();
+const RootStack = createStackNavigator();
 
 // const Tab = createBottomTabNavigator();
 const Tab = createMaterialBottomTabNavigator();
+const RootStackScreen = ({navigation}) => (
+  <RootStack.Navigator>
+      <RootStack.Screen
+      options={({ route }) => ({
+            // title: getHeaderTitle(route),
+            headerShown: false
+          })}
+       name="SplashScreen" component={SplashScreen}/>
+      <RootStack.Screen
+        options={({ route }) => ({
+            // title: getHeaderTitle(route),
+            headerShown: false
+          })}
+       name="SignInScreen" component={SignInScreen}/>
+      <RootStack.Screen
+        options={({ route }) => ({
+            // title: getHeaderTitle(route),
+            headerShown: false
+          })}
+       name="SignUpScreen" component={SignUpScreen}/>
+      {/* <RootStack.Screen name="HomeTabNavigator" component={HomeTabNavigator}/> */}
+  </RootStack.Navigator>
+);
+
 const HomeStackNavigation = ({ navigation, route }) =>{
   return(
     <HomeStack.Navigator
-        // screenOptions={{
-        //   gestureEnabled: true,
-        //   gestureDirection: "horizontal",
-        //   cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-        //   // transitionSpec: {
-        //   //   open: config,
-        //   //   close: closeConfig
-        //   // }
-        // }}
-        // headerMode="float"
-        // animation="fade"
+        screenOptions={{
+          gestureEnabled: true,
+          gestureDirection: "horizontal",
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+          // transitionSpec: {
+          //   open: config,
+          //   close: closeConfig
+          // }
+        }}
+        headerMode="float"
+        animation="fade"
+        // headerMode='none'
       >
         <HomeStack.Screen
           options={({ route }) => ({
-            title: getHeaderTitle(route),
-            headerShown: shouldHeaderBeShown(route)
+            // title: getHeaderTitle(route),
+            headerShown: false
           })}
           name="Home"
           component={HomeScreen}
         />
-        <HomeStack.Screen name="PlayVideo" component={PlayVideo} />
-        <HomeStack.Screen name="ViewAll" component={ViewAll} />
+        <HomeStack.Screen
+        //  options={({ route }) => ({
+        //     title: getHeaderTitle(route),
+        //     headerShown: true
+        //   })}
+         name="PlayVideo" component={PlayVideo} />
+        <HomeStack.Screen
+        //  options={({ route }) => ({
+        //     title: getHeaderTitle(route),
+        //     headerShown: true
+        //   })}
+         name="ViewAll" component={ViewAll} />
         {/* <HomeStack.Screen name="ContinueVideo" component={ContinueVideo} /> */}
         {/* <HomeStack.Screen name="MyList" component={MyList} /> */}
         {/* <HomeStack.Screen name="CourseAvailable" component={CourseAvailable} /> */}
@@ -88,6 +127,7 @@ const HomeStackNavigation = ({ navigation, route }) =>{
 const HomeTabNavigator = ({ navigation, route }) => {
   return (
     <Tab.Navigator
+    // headerMode='none'
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color, size }) => {
           let iconName;
@@ -109,6 +149,7 @@ const HomeTabNavigator = ({ navigation, route }) => {
        options={{
           tabBarLabel: 'Home',
           tabBarColor: '#1f65ff',
+          headerShown:true,
           tabBarIcon: ({ color }) => (
             <Ionicons name="ios-home" color={color} size={26} />
           ),
@@ -117,6 +158,7 @@ const HomeTabNavigator = ({ navigation, route }) => {
        options={{
           tabBarLabel: 'Chats',
           tabBarColor: '#009387',
+          // headerShown:true,
           tabBarIcon: ({ color }) => (
             <Ionicons name="logo-rss" color={color} size={26} />
           ),
@@ -126,6 +168,7 @@ const HomeTabNavigator = ({ navigation, route }) => {
        options={{
           tabBarLabel: 'Search',
           tabBarColor: '#d02860',
+          // headerShown:true,
           tabBarIcon: ({ color }) => (
             <Ionicons name="ios-search" color={color} size={26} />
           ),
@@ -135,6 +178,7 @@ const HomeTabNavigator = ({ navigation, route }) => {
        options={{
           tabBarLabel: 'Settings',
           tabBarColor: '#694fad',
+          // headerShown:true,
           tabBarIcon: ({ color }) => (
             <Ionicons name="ios-settings" color={color} size={26} />
           ),
@@ -144,6 +188,7 @@ const HomeTabNavigator = ({ navigation, route }) => {
     </Tab.Navigator>
   );
 };
+
 
 // const config = {
 //   animation: "spring",
@@ -180,15 +225,25 @@ export default function App() {
         headerMode="float"
         animation="fade"
       >
+       <Stack.Screen
+         options={({ route }) => ({
+            title: getHeaderTitle(route),
+            // headerShown: shouldHeaderBeShown(route)
+            headerShown: false,
+          })}
+         name="HomeTabNavigator" component={HomeTabNavigator} />
         <Stack.Screen
           options={({ route }) => ({
-            title: getHeaderTitle(route),
-            headerShown: shouldHeaderBeShown(route)
+            // title: getHeaderTitle(route),
+            // headerShown: shouldHeaderBeShown(route)
+            headerShown: false,
           })}
-          name="Home"
-          component={HomeTabNavigator}
+          name="RootStackScreen"
+          // component={HomeTabNavigator}
+          component={RootStackScreen}
+        
         />
-        {/* <Stack.Screen name="Settings" component={SettingsScreen} /> */}
+       
       </Stack.Navigator>
     </NavigationContainer>
   );

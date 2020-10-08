@@ -5,6 +5,8 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, Dimensions
 export default function FeedScreen ({ navigation, route}){
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      {/* <StatusBar backgroundColor="#0ba8b0" /> */}
+
           <Text>FeedScreen!</Text>
         </View>
       );

@@ -5,6 +5,7 @@ import {FontAwesome5, Feather, MaterialIcons} from '@expo/vector-icons';
 export default function Search({ navigation, route }){
     return(
         <View style={styles.searchBoxContainer}>
+      {/* <StatusBar backgroundColor="#d02860" /> */}
         <TextInput 
           placeholder='Search Movies'
           placeholderTextColor='#666'
