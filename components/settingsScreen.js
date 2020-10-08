@@ -21,7 +21,7 @@ const Item = ({ title }) => (
     <Text style={styles.title}>{title}</Text>
   </View>
 );
-export default function SettingsScreen (props){
+export default function SettingsScreen ({ navigation, route}){
   const renderItem = ({ item }) => <Item title={item.title} />;
     return (
        

@@ -5,6 +5,9 @@ import { FontAwesome5, Feather, MaterialIcons } from '@expo/vector-icons';
 import Search from './search/search';
 import PlayVideo from './home/playVideo';
 import ViewAll from './home/viewAll';
+import ContinueVideo from './home/continue';
+import MyList from './home/myList';
+import CourseAvailable from './home/course';
 
 export default function HomeScreen({ navigation, route }) {
   const [background, setBackground] = useState({
@@ -45,32 +48,7 @@ export default function HomeScreen({ navigation, route }) {
     },
 
   ]);
-  const [list, setList] = useState([
-    {
-      image: 'https://wallpaperaccess.com/full/170712.jpg',
-      key: 1
-    },
-    {
-      image: 'https://wallpapers.moviemania.io/phone/movie/324552/c93e2f/john-wick-chapter-2-phone-wallpaper.jpg?w=1536&h=2732',
-      key: 2
-    },
-    {
-      image: 'https://images.hdqwalls.com/download/iron-man-infinity-gauntlet-avengers-endgame-nj-800x1280.jpg',
-      key: 3
-    },
-    {
-      image: 'https://fsb.zobj.net/crop.php?r=vT3wekppkkiqZZV7NJluOpW4OTc5cIRZg-wXPasw3_ySASpMR2Fo15ub3SJ8yKuBfO_K9LW8LD08P0gCpDxwCrHUYkX9B0e9hZoqx4rujsFjvO7UAPyqy0oae0ypeP7Rx020BcNWzdlb3UZV',
-      key: 4
-    },
-    {
-      image: 'https://neuetechs.com/wp-content/uploads/2019/06/5-7-720x1280.jpg',
-      key: 5
-    },
-    {
-      image: 'https://i.pinimg.com/originals/ce/f6/1b/cef61b67c8b5facd862f9b18aa4f29f5.jpg',
-      key: 6
-    },
-  ]);
+  
   const carouselRef = useRef(null);
   const { width, height } = Dimensions.get('window');
   const renderItem = ({ item, index }) => {
@@ -149,7 +127,8 @@ export default function HomeScreen({ navigation, route }) {
         </View>
       </View>
       <View style={{ marginHorizontal: 14 }}>
-        <Text style={{ color: 'white', fontSize: 24, fontWeight: 'bold', marginBottom: 24, marginTop: '20%' }}>Continue Watching</Text>
+        <ContinueVideo navigation={navigation} />
+        {/* <Text style={{ color: 'white', fontSize: 24, fontWeight: 'bold', marginBottom: 24, marginTop: '20%' }}>Continue Watching</Text>
         <ImageBackground
           source={{ uri: 'https://www.thehindu.com/entertainment/movies/4xicg2/article26618002.ece/ALTERNATES/LANDSCAPE_1200/how-to-train-your-dragon' }}
           style={{ height: 250, width: '100%', backgroundColor: '#000' }}
@@ -166,27 +145,28 @@ export default function HomeScreen({ navigation, route }) {
                 navigation.navigate('PlayVideo');
             }}></FontAwesome5>
           </TouchableOpacity>
-        </ImageBackground>
+        </ImageBackground> */}
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24, marginTop: 24 }}>
           <Text style={{ color: 'white', fontSize: 24, fontWeight: 'bold' }}>My List</Text>
           <Text style={{ color: 'white', fontSize: 14, fontWeight: 'normal' }}
-           onPress={() => {
-                navigation.navigate('ViewAll');
+            onPress={() => {
+              navigation.navigate('ViewAll');
             }}>View All</Text>
 
         </View>
-        <FlatList style={{ marginBottom: 30 }}
+        <MyList navigation={navigation} />
+        {/* <FlatList style={{ marginBottom: 30 }}
           data={list}
           horizontal={true}
           renderItem={({ item }) => {
             return (
               <TouchableOpacity style={{ marginRight: 20 }}
-              onPress={() => {
-                navigation.navigate('PlayVideo');
-            }}
+                onPress={() => {
+                  navigation.navigate('PlayVideo');
+                }}
               >
-                <Image source={{ uri: item.image }} style={{ height: 300, width: 200 }} 
-                  
+                <Image source={{ uri: item.image }} style={{ height: 300, width: 200 }}
+
                 />
                 <View style={{ position: 'absolute', height: 5, width: '100%', backgroundColor: '#02ad94', opacity: 0.8 }}>
 
@@ -195,23 +175,24 @@ export default function HomeScreen({ navigation, route }) {
               </TouchableOpacity>
             )
           }}
-        />
+        /> */}
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24, marginTop: 24 }}>
           <Text style={{ color: 'white', fontSize: 24, fontWeight: 'bold' }}>Courses Available</Text>
           {/* <Text style={{color:'white', fontSize:14, fontWeight:'normal'}}>View All</Text> */}
         </View>
-        <FlatList style={{ marginBottom: 30 }}
+        <CourseAvailable navigation={navigation} />
+        {/* <FlatList style={{ marginBottom: 30 }}
           data={list}
           horizontal={false}
           renderItem={({ item }) => {
             return (
               <TouchableOpacity style={{ marginHorizontal: 10, marginBottom: 30, }}
-              onPress={() => {
-                navigation.navigate('PlayVideo');
-            }}
+                onPress={() => {
+                  navigation.navigate('PlayVideo');
+                }}
               >
-                <Image source={{ uri: item.image }} style={{ height: 200, width: 312, borderRadius: 10 }} 
-                 
+                <Image source={{ uri: item.image }} style={{ height: 200, width: 312, borderRadius: 10 }}
+
                 />
                 <View style={{ position: 'absolute', borderRadius: 10, borderColor: '#02ad94', paddingHorizontal: 151, paddingVertical: 95, borderWidth: 5, opacity: 0.8 }}>
 
@@ -220,7 +201,7 @@ export default function HomeScreen({ navigation, route }) {
               </TouchableOpacity>
             )
           }}
-        />
+        /> */}
       </View>
     </ScrollView>
   );
@@ -330,4 +311,5 @@ const styles = StyleSheet.create({
     marginBottom: 14
 
   }
+
 })

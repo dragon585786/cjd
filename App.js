@@ -13,7 +13,11 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import Search from './components/search/search';
 import PlayVideo from './components/home/playVideo';
 import ViewAll from './components/home/viewAll';
-// import ViewAll from './components/home/viewAll';
+import ContinueVideo from './components/home/continue';
+import MyList from './components/home/myList';
+import CourseAvailable from './components/home/course';
+
+
 
 
 
@@ -54,10 +58,10 @@ const HomeStackNavigation = ({ navigation, route }) =>{
         //   gestureEnabled: true,
         //   gestureDirection: "horizontal",
         //   cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-        // //   transitionSpec: {
-        // //     open: config,
-        // //     close: closeConfig
-        // //   }
+        //   // transitionSpec: {
+        //   //   open: config,
+        //   //   close: closeConfig
+        //   // }
         // }}
         // headerMode="float"
         // animation="fade"
@@ -72,7 +76,11 @@ const HomeStackNavigation = ({ navigation, route }) =>{
         />
         <HomeStack.Screen name="PlayVideo" component={PlayVideo} />
         <HomeStack.Screen name="ViewAll" component={ViewAll} />
+        {/* <HomeStack.Screen name="ContinueVideo" component={ContinueVideo} /> */}
+        {/* <HomeStack.Screen name="MyList" component={MyList} /> */}
+        {/* <HomeStack.Screen name="CourseAvailable" component={CourseAvailable} /> */}
         {/* <HomeStack.Screen name="Settings" component={SettingsScreen} /> */}
+
       </HomeStack.Navigator>
   )
 }
