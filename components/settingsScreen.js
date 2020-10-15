@@ -28,6 +28,10 @@ const Item = ({ title }) => (
     <Text style={styles.title}>{title}</Text>
   </View>
 );
+
+
+
+
 export default function SettingsScreen({ navigation, route }) {
   const renderItem = ({ item }) =>{
     return(<TouchableOpacity onPress={()=>{
@@ -48,12 +52,13 @@ export default function SettingsScreen({ navigation, route }) {
   
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', }}>
       <Animatable.View 
-       animation="bounceInUp"
+       animation="fadeInUpBig"
+       
       style={styles.cardContainer}>
-        <Image source={require('../assets/logo.png')} style={styles.cardImage}/>
+        <Image source={require('../assets/logo1.jpg')} style={styles.cardImage}/>
         <MaterialIcons style={{marginTop:-20, marginBottom:20}} name="verified-user" size={24} color="#0ba8b0" />
         
-        <Text style={{fontSize:30,fontWeight:'bold',marginVertical:3, color:'black'}}>Salim Khan</Text>
+        <Text style={{fontSize:30,fontWeight:'bold',marginVertical:3, color:'black'}}>Lucy Miller</Text>
         <Text style={{fontSize:15,fontWeight:'bold',marginVertical:3, color:'grey'}}>sk9022522568@gmail.com</Text>
         <Text style={{fontSize:15,fontWeight:'bold',marginVertical:3, color:'grey'}}>Role</Text>
         <View style={{flexDirection:'row'}}>
@@ -66,8 +71,9 @@ export default function SettingsScreen({ navigation, route }) {
       </Animatable.View>
     </View>
     <Animatable.View 
-       animation="bounceInUp"    
-    style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white', }}>
+       animation="fadeInUpBig"
+        
+    style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
        <SafeAreaView style={{marginTop:50}} >
 
       <FlatList data={DATA} renderItem={renderItem} keyExtractor={item => item.id} />
